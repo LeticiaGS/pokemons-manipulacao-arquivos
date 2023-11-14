@@ -1,0 +1,15 @@
+options = {
+    1: '#',
+    2: 'Name',
+    3: 'Type 1',
+    4: 'Type 2',
+    5: 'Total',
+    6: 'HP',
+    7: 'Attack',
+    8: 'Defense',
+    9: 'Sp. Atk',
+    10: 'Sp. Def',
+    11: 'Speed',
+    12: 'Generation',
+    13: 'Legendary',
+}
