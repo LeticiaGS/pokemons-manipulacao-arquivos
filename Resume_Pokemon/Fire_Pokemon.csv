@@ -1,0 +1,15 @@
+#, Name, Type 1, Type 2, Total, HP, Attack, Defense, Sp. Atk, Sp. Def, Speed, Generation, Legendary
+228, Houndour, Dark, Fire, 330, 45, 60, 30, 80, 50, 65, 2, False
+229, Houndoom, Dark, Fire, 500, 75, 90, 50, 110, 80, 95, 2, False
+229, HoundoomMega Houndoom, Dark, Fire, 600, 75, 90, 90, 140, 90, 115, 2, False
+383, GroudonPrimal Groudon, Ground, Fire, 770, 100, 180, 160, 150, 90, 90, 3, True
+479, RotomHeat Rotom, Electric, Fire, 520, 50, 65, 107, 105, 107, 86, 4, False
+494, Victini, Psychic, Fire, 600, 100, 100, 100, 100, 100, 100, 5, True
+607, Litwick, Ghost, Fire, 275, 50, 30, 55, 65, 55, 20, 5, False
+608, Lampent, Ghost, Fire, 370, 60, 40, 60, 95, 60, 55, 5, False
+609, Chandelure, Ghost, Fire, 520, 60, 55, 90, 145, 90, 80, 5, False
+636, Larvesta, Bug, Fire, 360, 55, 85, 55, 50, 55, 60, 5, False
+637, Volcarona, Bug, Fire, 550, 85, 60, 65, 135, 105, 100, 5, False
+643, Reshiram, Dragon, Fire, 680, 100, 120, 100, 150, 120, 90, 5, True
+
+Existem um total de 12 Pokemons do tipo Fire. 3 sao lendarios.
