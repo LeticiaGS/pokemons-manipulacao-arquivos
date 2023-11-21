@@ -6,17 +6,6 @@ arrPokemons = []
 options = {
     1: '#',
     2: 'Name',
-    3: 'Type 1',
-    4: 'Type 2',
-    5: 'Total',
-    6: 'HP',
-    7: 'Attack',
-    8: 'Defense',
-    9: 'Sp. Atk',
-    10: 'Sp. Def',
-    11: 'Speed',
-    12: 'Generation',
-    13: 'Legendary',
 }
 
 types = {
@@ -164,27 +153,10 @@ def reportPokemon():
         folder_file = os.path.basename(path)
         file_name = (choosen_file.split('.')[0]).title()
 
-        # print('choosen_file',choosen_file)
-        # print('folger_file',folder_file)
-        # print('file_name',file_name)
-
-        # print(f'{folder_file}\{choosen_file}')
-        # print(f'file path: {paths.CURRENT_DIR}/{folder_file}/{choosen_file}')
-        # print(os.path.isfile(f'{paths.CURRENT_DIR}/{folder_file}/{choosen_file}'))
-
-        # estatico = 'Resume_Pokemon/Poison_Pokemon.csv'
-        # dinamico = f'{folder_file}/{choosen_file}'
-
-        # print('COMPARANDO ',estatico == dinamico)
-
-        with open (f'{folder_file}/{choosen_file}','r') as fileToReport:
-             test = fileToReport.readlines()
-             print(test)
+        with open (f'{folder_file}\{choosen_file}','r') as fileToReport:
              for line in fileToReport.readlines():
-                 print(line)
                  arrReportFile.append(line.split(','))
 
-        print(arrReportFile)
         count_lines = len(arrReportFile)
         columnHeader = arrReportFile[0]
 
