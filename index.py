@@ -105,7 +105,7 @@ def resumePokemons():
                         count_legendary += 1
                     resumePokemonsFile.write(', '.join(pokemon))
         resumePokemonsFile.write(f'\nExistem um total de {count_qtde} Pokemons do tipo {inputType}. {count_legendary} sao lendarios.')
-        resumePokemonsFile.close
+        resumePokemonsFile.close()
         print("\nOba!! Seu arquivo ficou pronto! Confira na raiz do projeto =)")
 
         print("\nDeseja voltar ao menu principal? ")
@@ -164,7 +164,7 @@ def reportPokemon():
         reportPokemonFile.write(f"O número de linhas que o arquivo original possui é: {count_lines}")
         reportPokemonFile.write("\n\nAs colunas presentes no arquivo são: \n")
         reportPokemonFile.write('\n '.join(columnHeader))
-        reportPokemonFile.close
+        reportPokemonFile.close()
         print("\nOba! Seu arquivo ficou pronto, confira na raiz do projeto. =)\n")
         print("\nDeseja voltar ao menu principal? ")
         print("1. Sim\n2. Não")
@@ -218,7 +218,7 @@ def searchPokemon():
             for pokemon in arrPokemons: 
                 if (((str(pokemon[indexCol])).upper().strip()) == (IdOrName.upper().strip())):
                     pokemonFiltredFile.write(', '.join(pokemon))
-            pokemonFiltredFile.close
+            pokemonFiltredFile.close()
             print("\nOba! Seu arquivo ficou pronto, confira na raiz do projeto. =)\n")
 
             print("\nDeseja voltar ao menu principal? ")
