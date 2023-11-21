@@ -39,7 +39,7 @@ def menu():
     print('0. Sair')
     print('1. Filtragem de Pokemons')
     print('2. Resumo dos pokemons') 
-    print('3. Relatório do Arquivo original: Pokemon.csv')
+    print('3. Gerar relatório')
 
     op = getInputOperation()
     
