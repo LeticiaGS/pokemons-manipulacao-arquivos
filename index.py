@@ -144,9 +144,7 @@ def reportPokemon():
         # Extracting all the contents in the directory corresponding to path
         l_files = os.listdir(path)
         for i in range(len(l_files)):
-            file_path = f'{path}\\{l_files[i]}'
-            if (os.path.isfile(file_path)):
-                print(f'{i+1}. {l_files[i]}')
+            print(f'{i+1}. {l_files[i]}')
 
         op_files = int(input("Indique o arquivo de sua escolha pelo indice correspondente: "))
         choosen_file = l_files[op_files - 1]
