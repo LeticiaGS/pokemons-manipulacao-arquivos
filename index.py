@@ -3,6 +3,10 @@ import paths
 
 arrPokemons = []
 
+with open ('Original_CSV/pokemon.csv','r') as originalFilePokemon:
+    for line in originalFilePokemon.readlines():
+        arrPokemons.append(line.split(','))
+
 options = {
     1: '#',
     2: 'Name',
@@ -28,10 +32,6 @@ types = {
     17: 'Dark',
     18: 'Fairy',
 }
-
-with open ('Original_CSV/pokemon.csv','r') as originalFilePokemon:
-    for line in originalFilePokemon.readlines():
-        arrPokemons.append(line.split(','))
 
 def menu():
     print("-------------------------------------------------------------------------------------------")
