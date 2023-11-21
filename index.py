@@ -47,20 +47,27 @@ with open ('Original_CSV/pokemon.csv','r') as originalFilePokemon:
 def menu():
     print("-------------------------------------------------------------------------------------------")
     print("\nBem vindo a nossa base de dados dos Pokemons! Relembrar é viver. =D\n\nSelecione uma opção do Menu: ")
+    print('0. Sair')
     print('1. Filtragem de Pokemons')
     print('2. Resumo dos pokemons') 
     print('3. Relatório do Arquivo original: Pokemon.csv')
 
-    op = int(input("\nPor favor, indique o número da operação que deseja realizar: "))
+    op = getInputOperation()
     
-    if (op == 1): 
+    while ((op < 0) or ( op > 3)):
+            print('\nVocê digiou um valor inváido! Tente novamente.')
+            op = getInputOperation()
+
+    if (op == 0):
+        exit()
+    elif (op == 1): 
         searchPokemon()
     
-    if (op == 2):
+    elif (op == 2):
         resumePokemons()
 
-    if (op == 3):
-        report()
+    elif (op == 3):
+        reportPokemon() 
 
 def resumePokemons():
     print("-------------------------------------------------------------------------------------------")
@@ -70,17 +77,17 @@ def resumePokemons():
     print(" 7.Veneno      8.Elétrico      9.Terra     10.Pedra     11.Psíquico     12.Gelo")
     print("13.Inseto     14.Fantasma     15.Ferro     16.Dragão    17.Sombrio      18.Fada")
 
-    op = int(input("\nPor favor, indique o número da operação que deseja realizar: "))
+    op = getInputOperation()
     if (op >= 1 and op <= 18):
         print("\nDevemos agrupar por: ")
         print(" 1.Tipo Principal      2.Tipo Secundário          3.Ambos os tipos")
-        op_type = int(input("\nPor favor, indique o número da operação que deseja realizar: "))
+        op_type = getInputOperation()
 
         while (op_type < 1 or op_type > 3):
             print("\nOpps! Valor inválido. Por favor, responda de acordo com as opções disponíves:")
             print("Devemos agrupar por: ")
             print(" 1.Tipo Principal      2.Tipo Secundário          3.Ambos os tipos")
-            op_type = int(input("\nPor favor, indique o número da operação que deseja realizar: "))
+            op_type = getInputOperation()
 
         inputType = types[op]
         resumePokemonsFile = open(f"Resume_Pokemon/{inputType}_Pokemon.csv", "w")
@@ -112,56 +119,95 @@ def resumePokemons():
         resumePokemonsFile.close
         print("\nOba!! Seu arquivo ficou pronto! Confira na raiz do projeto =)")
 
+        print("\nDeseja voltar ao menu principal? ")
+        print("1. Sim\n2. Não")
+        op_return = getInputOperation()
+        if (op_return == 1):
+            menu()
+
     else: 
         print("\nOpps! Digitou um valor inválido!")
         print("Deseja tentar novamente? ")
         print("1. Sim\n2. Não\n3. Voltar ao Menu Principal")
-        op = int(input("\nDigite sua resposta pelo indice correspondente: "))
-        if (op == 1):
+        op_return = getInputOperation()
+        if (op_return == 1):
             resumePokemons()
-        elif (op == 3):
+        elif (op_return == 3):
             menu()
 
-def report():
+def reportPokemon():
     print("-------------------------------------------------------------------------------------------")
     print("\nVamos criar alguns relatórios! Escolha as opções abaixo: ")
     print("1. Arquivo Original dos pokemons\n2. Pokemons Filtrado\n3. Resumo de Pokemons")
-    op = int(input("\nDigite sua resposta pelo indice correspondente: "))
+    op = getInputOperation()
     arrReportFile = []
     path = ''
 
-    if (op == 1):
-        path = f'{paths.CURRENT_DIR}/Original_CSV'
-    elif (op == 2):
-        path = f'{paths.CURRENT_DIR}/Filtred_Pokemon'
-    elif (op == 3):
-        path = f'{paths.CURRENT_DIR}/Resume_Pokemon'
- 
-    print("\nOpções de arquivo para gerar relatórios:")
-    # Extracting all the contents in the directory corresponding to path
-    l_files = os.listdir(path)
-    for i in range(len(l_files)):
-        file_path = f'{path}\\{l_files[i]}'
-        if (os.path.isfile(file_path)):
-            print(f'{i+1}. {l_files[i]}')
-
-    op_files = int(input("Indique o arquivo de sua escolha pelo indice correspondente: "))
-    choosen_file = l_files[op_files - 1]
-    folder_file = os.path.basename(path)
-    file_name = (choosen_file.split('.')[0]).title()
-
-    with open (f'{folder_file}/{choosen_file}','r') as fileToReport:
-        for line in fileToReport.readlines():
-            arrReportFile.append(line.split(','))
+    if ((op>= 1) and (op<= 3)):
+        if (op == 1):
+            path = f'{paths.CURRENT_DIR}/Original_CSV'
+        elif (op == 2):
+            path = f'{paths.CURRENT_DIR}/Filtred_Pokemon'
+        elif (op == 3):
+            path = f'{paths.CURRENT_DIR}/Resume_Pokemon'
     
-    count_lines = len(arrReportFile)
-    columnHeader = arrReportFile[0]
+        print("\nOpções de arquivo para gerar relatórios:")
+        # Extracting all the contents in the directory corresponding to path
+        l_files = os.listdir(path)
+        for i in range(len(l_files)):
+            file_path = f'{path}\\{l_files[i]}'
+            if (os.path.isfile(file_path)):
+                print(f'{i+1}. {l_files[i]}')
 
-    reportPokemonFile = open(f"Report_Files/{file_name}_Report.csv", "w")
-    reportPokemonFile.write(f"O número de linhas que o arquivo original possui é: {count_lines}")
-    reportPokemonFile.write("\n\nAs colunas presentes no arquivo são: \n")
-    reportPokemonFile.write('\n '.join(columnHeader))
-    reportPokemonFile.close
+        op_files = int(input("Indique o arquivo de sua escolha pelo indice correspondente: "))
+        choosen_file = l_files[op_files - 1]
+        folder_file = os.path.basename(path)
+        file_name = (choosen_file.split('.')[0]).title()
+
+        # print('choosen_file',choosen_file)
+        # print('folger_file',folder_file)
+        # print('file_name',file_name)
+
+        # print(f'{folder_file}\{choosen_file}')
+        # print(f'file path: {paths.CURRENT_DIR}/{folder_file}/{choosen_file}')
+        # print(os.path.isfile(f'{paths.CURRENT_DIR}/{folder_file}/{choosen_file}'))
+
+        # estatico = 'Resume_Pokemon/Poison_Pokemon.csv'
+        # dinamico = f'{folder_file}/{choosen_file}'
+
+        # print('COMPARANDO ',estatico == dinamico)
+
+        with open (f'{folder_file}/{choosen_file}','r') as fileToReport:
+             test = fileToReport.readlines()
+             print(test)
+             for line in fileToReport.readlines():
+                 print(line)
+                 arrReportFile.append(line.split(','))
+
+        print(arrReportFile)
+        count_lines = len(arrReportFile)
+        columnHeader = arrReportFile[0]
+
+        reportPokemonFile = open(f"Report_Files\{file_name}_Report.csv", "w")
+        reportPokemonFile.write(f"O número de linhas que o arquivo original possui é: {count_lines}")
+        reportPokemonFile.write("\n\nAs colunas presentes no arquivo são: \n")
+        reportPokemonFile.write('\n '.join(columnHeader))
+        reportPokemonFile.close
+        print("\nOba! Seu arquivo ficou pronto, confira na raiz do projeto. =)\n")
+        print("\nDeseja voltar ao menu principal? ")
+        print("1. Sim\n2. Não")
+        op_return = getInputOperation()
+        if (op_return == 1):
+            menu()
+    else:
+        print("\nOpps! Digitou um valor inválido!")
+        print("Deseja tentar novamente? ")
+        print("1. Sim\n2. Não\n3. Voltar ao Menu Principal")
+        op_return = getInputOperation()
+        if (op_return == 1):
+            reportPokemon()
+        elif (op_return == 3):
+            menu()
 
 def searchPokemon(): 
     print("-------------------------------------------------------------------------------------------")
@@ -169,8 +215,8 @@ def searchPokemon():
     print('\n1. ID')
     print('2. Nome')
 
-    op_pokemon = int(input("\nPor favor, indique o número da operação que deseja realizar: "))
-
+    op_pokemon = getInputOperation()
+    
     if (op_pokemon == 1 or op_pokemon == 2):
 
         searchByColName = options[op_pokemon]
@@ -179,40 +225,59 @@ def searchPokemon():
         
         IdOrName = str(input(f"\nDigite o {searchBy} do pokemon que deseja filtrar: "))
 
-        fileName = (str(input("Escolha o nome que terá seu arquivo: "))).strip()
-        
-        pokemonFiltredFile = open(f"Filtred_Pokemon/{fileName}.csv", "w")
-        columnHeader = arrPokemons[0]
-        pokemonFiltredFile.write(', '.join(columnHeader))
-        
         foundPokemon = False
-        for pokemon in arrPokemons: 
-            if (((str(pokemon[indexCol])).upper().strip()) == (IdOrName.upper().strip())):
-                pokemonFiltredFile.write(', '.join(pokemon))
-                foundPokemon = True
-        pokemonFiltredFile.close
-        print("\nOba! Seu arquivo ficou pronto, confira na raiz do projeto. =)\n")
+        for pokemon in arrPokemons:
+             if (((str(pokemon[indexCol])).upper().strip()) == (IdOrName.upper().strip())):
+                 foundPokemon = True
 
         if not foundPokemon:
             print(f"\nInfelizmente não conseguimos encontrar seu pokemon por este {searchBy}. :/ \nGostaria de realizar uma nova filtragem?")
             print("1. Sim\n2. Não")
-            op = int(input("\nDigite sua resposta pelo indice correspondente: "))
+            op = getInputOperation()
             if (op == 1):
                 searchPokemon()
-            elif (op == 2):
-                print("\nDseja voltar ao menu principal? ")
-                print("1. Sim\n2. Não")
-                op_menu = int(input("\nDigite sua resposta pelo indice correspondente: "))
-                if op_menu == 1:
-                    menu()
+        else:
+            fileName = (str(input("Escolha o nome que terá seu arquivo: "))).strip()
+
+            pokemonFiltredFile = open(f"Filtred_Pokemon/{fileName}.csv", "w")
+            columnHeader = arrPokemons[0]
+            pokemonFiltredFile.write(', '.join(columnHeader))
+
+            for pokemon in arrPokemons: 
+                if (((str(pokemon[indexCol])).upper().strip()) == (IdOrName.upper().strip())):
+                    pokemonFiltredFile.write(', '.join(pokemon))
+            pokemonFiltredFile.close
+            print("\nOba! Seu arquivo ficou pronto, confira na raiz do projeto. =)\n")
+
+            print("\nDeseja voltar ao menu principal? ")
+            print("1. Sim\n2. Não")
+            op_return = getInputOperation()
+            if (op_return == 1):
+                menu()
     else: 
         print("\nOpps! Digitou um valor inválido!")
         print("Deseja tentar novamente? ")
         print("1. Sim\n2. Não\n3. Voltar ao Menu Principal")
-        op = int(input("\nDigite sua resposta pelo indice correspondente: "))
-        if (op == 1):
+        op_return = getInputOperation()
+        if (op_return == 1):
             searchPokemon()
-        elif (op == 3):
+        elif (op_return == 3):
             menu()
+
+def intTryParse(value):
+    try:
+        int(value)
+        return True
+    except ValueError:
+        print("Caracter inválido! Observe os valores disponíveis e tente novamente.")
+        return False
+
+def getInputOperation():
+    validationInputOp = True
+    while (validationInputOp):
+        input_op = (input("\nPor favor, indique o número da operação que deseja realizar: "))
+        validationInputOp =  not intTryParse(input_op)
+
+    return int(input_op)
 
 menu()
